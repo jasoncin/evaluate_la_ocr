@@ -1,0 +1,1761 @@
+{
+    "file_name": "2019080910321991-096_1.png",
+    "attributes": {
+        "_via_img_metadata": {
+            "regions": [
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 108,
+                        "y": 16,
+                        "width": 322,
+                        "height": 50
+                    },
+                    "region_attributes": {
+                        "label": "原本にポ合あソぼせレ",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 3077,
+                        "y": 20,
+                        "width": 34,
+                        "height": 26
+                    },
+                    "region_attributes": {
+                        "label": "-",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 2687,
+                        "y": 98,
+                        "width": 134,
+                        "height": 28
+                    },
+                    "region_attributes": {
+                        "label": "2016/12/03",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 2411,
+                        "y": 98,
+                        "width": 140,
+                        "height": 28
+                    },
+                    "region_attributes": {
+                        "label": "2017/11/11",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 1792,
+                        "y": 98,
+                        "width": 120,
+                        "height": 28
+                    },
+                    "region_attributes": {
+                        "label": "検査項目",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 2270,
+                        "y": 90,
+                        "width": 68,
+                        "height": 38
+                    },
+                    "region_attributes": {
+                        "label": "判定",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 2973,
+                        "y": 98,
+                        "width": 146,
+                        "height": 30
+                    },
+                    "region_attributes": {
+                        "label": "参考基準値",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 206,
+                        "y": 118,
+                        "width": 32,
+                        "height": 18
+                    },
+                    "region_attributes": {
+                        "label": ":ォ",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 266,
+                        "y": 114,
+                        "width": 166,
+                        "height": 24
+                    },
+                    "region_attributes": {
+                        "label": ",タカハシマサル",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 121,
+                        "y": 141,
+                        "width": 119,
+                        "height": 34
+                    },
+                    "region_attributes": {
+                        "label": "氏名",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "name",
+                        "key_type": "key"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 622,
+                        "y": 146,
+                        "width": 114,
+                        "height": 31
+                    },
+                    "region_attributes": {
+                        "label": "生年月日",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "birth_date",
+                        "key_type": "key"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 1028,
+                        "y": 146,
+                        "width": 142,
+                        "height": 30
+                    },
+                    "region_attributes": {
+                        "label": "年齢32歳",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 1270,
+                        "y": 148,
+                        "width": 284,
+                        "height": 26
+                    },
+                    "region_attributes": {
+                        "label": "個人ID000000508959",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 674,
+                        "y": 222,
+                        "width": 112,
+                        "height": 30
+                    },
+                    "region_attributes": {
+                        "label": "問診項目",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 1220,
+                        "y": 228,
+                        "width": 224,
+                        "height": 24
+                    },
+                    "region_attributes": {
+                        "label": "メタボリック判定",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 672,
+                        "y": 266,
+                        "width": 192,
+                        "height": 28
+                    },
+                    "region_attributes": {
+                        "label": "喫煙習慣:いいえ",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 670,
+                        "y": 306,
+                        "width": 194,
+                        "height": 30
+                    },
+                    "region_attributes": {
+                        "label": "運動習慣:いいえ",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 670,
+                        "y": 346,
+                        "width": 176,
+                        "height": 28
+                    },
+                    "region_attributes": {
+                        "label": "飲酒習慣:時々",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 666,
+                        "y": 384,
+                        "width": 228,
+                        "height": 28
+                    },
+                    "region_attributes": {
+                        "label": "飲酒量:1合未満",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 670,
+                        "y": 458,
+                        "width": 114,
+                        "height": 32
+                    },
+                    "region_attributes": {
+                        "label": "服薬情報",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 670,
+                        "y": 498,
+                        "width": 118,
+                        "height": 30
+                    },
+                    "region_attributes": {
+                        "label": "血圧:なし",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 1222,
+                        "y": 502,
+                        "width": 302,
+                        "height": 28
+                    },
+                    "region_attributes": {
+                        "label": "保健指導(階層化)レベル",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 670,
+                        "y": 524,
+                        "width": 116,
+                        "height": 40
+                    },
+                    "region_attributes": {
+                        "label": "血糖:なし",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 666,
+                        "y": 560,
+                        "width": 124,
+                        "height": 40
+                    },
+                    "region_attributes": {
+                        "label": "脂質:なし",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 122,
+                        "y": 640,
+                        "width": 170,
+                        "height": 28
+                    },
+                    "region_attributes": {
+                        "label": "食後経過時間",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 224,
+                        "y": 724,
+                        "width": 118,
+                        "height": 32
+                    },
+                    "region_attributes": {
+                        "label": "検査項目",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 698,
+                        "y": 724,
+                        "width": 66,
+                        "height": 38
+                    },
+                    "region_attributes": {
+                        "label": "判定",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 837,
+                        "y": 729,
+                        "width": 145,
+                        "height": 32
+                    },
+                    "region_attributes": {
+                        "label": "2017/11/11",
+                        "note": "checkup_date",
+                        "text_type": "printed",
+                        "text_category": "alphabet",
+                        "formal_key": "",
+                        "key_type": "common_key"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 1114,
+                        "y": 734,
+                        "width": 144,
+                        "height": 30
+                    },
+                    "region_attributes": {
+                        "label": "2016/12/03",
+                        "note": "checkup_date",
+                        "text_type": "printed",
+                        "text_category": "alphabet",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 1408,
+                        "y": 734,
+                        "width": 140,
+                        "height": 28
+                    },
+                    "region_attributes": {
+                        "label": "参考基準値",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 226,
+                        "y": 772,
+                        "width": 116,
+                        "height": 30
+                    },
+                    "region_attributes": {
+                        "label": "身体計測",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 248,
+                        "y": 812,
+                        "width": 60,
+                        "height": 30
+                    },
+                    "region_attributes": {
+                        "label": "身長",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 948,
+                        "y": 818,
+                        "width": 72,
+                        "height": 26
+                    },
+                    "region_attributes": {
+                        "label": "166.6",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 1224,
+                        "y": 824,
+                        "width": 68,
+                        "height": 24
+                    },
+                    "region_attributes": {
+                        "label": "166.0",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 1532,
+                        "y": 828,
+                        "width": 32,
+                        "height": 20
+                    },
+                    "region_attributes": {
+                        "label": "CM",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 246,
+                        "y": 852,
+                        "width": 68,
+                        "height": 30
+                    },
+                    "region_attributes": {
+                        "label": "体重",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 956,
+                        "y": 844,
+                        "width": 60,
+                        "height": 40
+                    },
+                    "region_attributes": {
+                        "label": "63.4",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 1232,
+                        "y": 856,
+                        "width": 62,
+                        "height": 30
+                    },
+                    "region_attributes": {
+                        "label": "62.5",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 1532,
+                        "y": 862,
+                        "width": 32,
+                        "height": 30
+                    },
+                    "region_attributes": {
+                        "label": "kg",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 216,
+                        "y": 892,
+                        "width": 120,
+                        "height": 30
+                    },
+                    "region_attributes": {
+                        "label": "標準体重",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 956,
+                        "y": 896,
+                        "width": 60,
+                        "height": 28
+                    },
+                    "region_attributes": {
+                        "label": "61.1",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 1232,
+                        "y": 884,
+                        "width": 60,
+                        "height": 42
+                    },
+                    "region_attributes": {
+                        "label": "60.6",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 1528,
+                        "y": 902,
+                        "width": 36,
+                        "height": 28
+                    },
+                    "region_attributes": {
+                        "label": "kg",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 210,
+                        "y": 932,
+                        "width": 138,
+                        "height": 30
+                    },
+                    "region_attributes": {
+                        "label": "BMI指数",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 1230,
+                        "y": 924,
+                        "width": 62,
+                        "height": 42
+                    },
+                    "region_attributes": {
+                        "label": "22.7",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 1366,
+                        "y": 936,
+                        "width": 154,
+                        "height": 28
+                    },
+                    "region_attributes": {
+                        "label": "18.5~24.9",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 952,
+                        "y": 924,
+                        "width": 72,
+                        "height": 42
+                    },
+                    "region_attributes": {
+                        "label": "22.8",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 1522,
+                        "y": 936,
+                        "width": 88,
+                        "height": 30
+                    },
+                    "region_attributes": {
+                        "label": "kg/m2",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 216,
+                        "y": 970,
+                        "width": 120,
+                        "height": 30
+                    },
+                    "region_attributes": {
+                        "label": "体脂肪率",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 1528,
+                        "y": 986,
+                        "width": 30,
+                        "height": 16
+                    },
+                    "region_attributes": {
+                        "label": "%",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 246,
+                        "y": 1010,
+                        "width": 62,
+                        "height": 30
+                    },
+                    "region_attributes": {
+                        "label": "腹囲",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 1530,
+                        "y": 1020,
+                        "width": 40,
+                        "height": 26
+                    },
+                    "region_attributes": {
+                        "label": "CM",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 248,
+                        "y": 1052,
+                        "width": 62,
+                        "height": 31
+                    },
+                    "region_attributes": {
+                        "label": "血圧",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "pressure_max_measured_1st_pressure_min_measured_1st",
+                        "key_type": "master"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 216,
+                        "y": 1092,
+                        "width": 126,
+                        "height": 30
+                    },
+                    "region_attributes": {
+                        "label": "血圧1回目",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "pressure_max_measured_1st_pressure_min_measured_1st",
+                        "key_type": "key"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 834,
+                        "y": 1095,
+                        "width": 39,
+                        "height": 30
+                    },
+                    "region_attributes": {
+                        "label": "99",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "number",
+                        "formal_key": "pressure_max_measured_1st",
+                        "key_type": "value"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 1248,
+                        "y": 1098,
+                        "width": 50,
+                        "height": 24
+                    },
+                    "region_attributes": {
+                        "label": "58",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 1370,
+                        "y": 1094,
+                        "width": 224,
+                        "height": 34
+                    },
+                    "region_attributes": {
+                        "label": "~139/~89mmHg",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 1108,
+                        "y": 1098,
+                        "width": 90,
+                        "height": 24
+                    },
+                    "region_attributes": {
+                        "label": "111/",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 216,
+                        "y": 1133,
+                        "width": 134,
+                        "height": 42
+                    },
+                    "region_attributes": {
+                        "label": "血圧2回目",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 886,
+                        "y": 1134,
+                        "width": 36,
+                        "height": 26
+                    },
+                    "region_attributes": {
+                        "label": "/",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 1368,
+                        "y": 1120,
+                        "width": 228,
+                        "height": 48
+                    },
+                    "region_attributes": {
+                        "label": "~139/~89mmHg",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 1162,
+                        "y": 1136,
+                        "width": 34,
+                        "height": 24
+                    },
+                    "region_attributes": {
+                        "label": "/",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 250,
+                        "y": 1168,
+                        "width": 54,
+                        "height": 28
+                    },
+                    "region_attributes": {
+                        "label": "視力",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 248,
+                        "y": 1206,
+                        "width": 56,
+                        "height": 30
+                    },
+                    "region_attributes": {
+                        "label": "裸眼",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 790,
+                        "y": 1212,
+                        "width": 38,
+                        "height": 28
+                    },
+                    "region_attributes": {
+                        "label": "右",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 926,
+                        "y": 1218,
+                        "width": 28,
+                        "height": 22
+                    },
+                    "region_attributes": {
+                        "label": "左",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 1068,
+                        "y": 1218,
+                        "width": 32,
+                        "height": 24
+                    },
+                    "region_attributes": {
+                        "label": "右",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 1202,
+                        "y": 1218,
+                        "width": 28,
+                        "height": 24
+                    },
+                    "region_attributes": {
+                        "label": "左",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 246,
+                        "y": 1244,
+                        "width": 58,
+                        "height": 32
+                    },
+                    "region_attributes": {
+                        "label": "矯正",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 790,
+                        "y": 1248,
+                        "width": 114,
+                        "height": 32
+                    },
+                    "region_attributes": {
+                        "label": "右0.7",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 922,
+                        "y": 1252,
+                        "width": 96,
+                        "height": 26
+                    },
+                    "region_attributes": {
+                        "label": "左1.2",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 1064,
+                        "y": 1252,
+                        "width": 230,
+                        "height": 30
+                    },
+                    "region_attributes": {
+                        "label": "右0.8左1.0",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 246,
+                        "y": 1286,
+                        "width": 60,
+                        "height": 28
+                    },
+                    "region_attributes": {
+                        "label": "聴力",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 234,
+                        "y": 1326,
+                        "width": 82,
+                        "height": 28
+                    },
+                    "region_attributes": {
+                        "label": "1000Hz",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 788,
+                        "y": 1330,
+                        "width": 238,
+                        "height": 30
+                    },
+                    "region_attributes": {
+                        "label": "右所見なし左所見なし",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 1066,
+                        "y": 1336,
+                        "width": 238,
+                        "height": 24
+                    },
+                    "region_attributes": {
+                        "label": "右所見なし左所見なし",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 1394,
+                        "y": 1330,
+                        "width": 112,
+                        "height": 30
+                    },
+                    "region_attributes": {
+                        "label": "所見なし",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 230,
+                        "y": 1352,
+                        "width": 90,
+                        "height": 40
+                    },
+                    "region_attributes": {
+                        "label": "4000Hz",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 786,
+                        "y": 1370,
+                        "width": 246,
+                        "height": 28
+                    },
+                    "region_attributes": {
+                        "label": "右所見なし左所見なし",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 1062,
+                        "y": 1370,
+                        "width": 246,
+                        "height": 28
+                    },
+                    "region_attributes": {
+                        "label": "右所見なし左所見なし",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 1394,
+                        "y": 1368,
+                        "width": 116,
+                        "height": 34
+                    },
+                    "region_attributes": {
+                        "label": "所見なし",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 216,
+                        "y": 1392,
+                        "width": 110,
+                        "height": 42
+                    },
+                    "region_attributes": {
+                        "label": "会話聴カ",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 230,
+                        "y": 1444,
+                        "width": 86,
+                        "height": 28
+                    },
+                    "region_attributes": {
+                        "label": "糖代謝",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 240,
+                        "y": 1484,
+                        "width": 66,
+                        "height": 30
+                    },
+                    "region_attributes": {
+                        "label": "尿糖",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 934,
+                        "y": 1492,
+                        "width": 68,
+                        "height": 26
+                    },
+                    "region_attributes": {
+                        "label": "(-)",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 1216,
+                        "y": 1490,
+                        "width": 60,
+                        "height": 28
+                    },
+                    "region_attributes": {
+                        "label": "(—)",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 1428,
+                        "y": 1494,
+                        "width": 66,
+                        "height": 24
+                    },
+                    "region_attributes": {
+                        "label": "(—)",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 198,
+                        "y": 1510,
+                        "width": 144,
+                        "height": 42
+                    },
+                    "region_attributes": {
+                        "label": "尿ー般・腎",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 227,
+                        "y": 1564,
+                        "width": 88,
+                        "height": 32
+                    },
+                    "region_attributes": {
+                        "label": "尿蛋白",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "urine_protein_measured",
+                        "key_type": "key"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 941,
+                        "y": 1571,
+                        "width": 56,
+                        "height": 28
+                    },
+                    "region_attributes": {
+                        "label": "(-)",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "alphabet",
+                        "formal_key": "urine_protein_measured",
+                        "key_type": "value"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 1212,
+                        "y": 1572,
+                        "width": 66,
+                        "height": 24
+                    },
+                    "region_attributes": {
+                        "label": "(ー)",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 1426,
+                        "y": 1572,
+                        "width": 64,
+                        "height": 26
+                    },
+                    "region_attributes": {
+                        "label": "(—)",
+                        "note": "",
+                        "text_type": "printed",
+                        "text_category": "japanese",
+                        "formal_key": "",
+                        "key_type": "other"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 265,
+                        "y": 145,
+                        "width": 92,
+                        "height": 28
+                    },
+                    "region_attributes": {
+                        "label": "高橋勝",
+                        "key_type": "value",
+                        "text_category": "name",
+                        "text_type": "printed",
+                        "formal_key": "name",
+                        "note": ""
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 749,
+                        "y": 151,
+                        "width": 121,
+                        "height": 23
+                    },
+                    "region_attributes": {
+                        "label": "1960/01/01",
+                        "key_type": "value",
+                        "text_category": "alphabet",
+                        "text_type": "printed",
+                        "formal_key": "birth_date",
+                        "note": ""
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "polygon",
+                        "all_points_x": [
+                            76,
+                            71,
+                            113,
+                            156,
+                            124,
+                            137,
+                            123,
+                            129,
+                            106,
+                            108,
+                            80
+                        ],
+                        "all_points_y": [
+                            175,
+                            332,
+                            415,
+                            396,
+                            306,
+                            280,
+                            247,
+                            204,
+                            190,
+                            172,
+                            164
+                        ]
+                    },
+                    "region_attributes": {
+                        "label": "504774",
+                        "key_type": "value",
+                        "text_category": "number",
+                        "text_type": "handwriting",
+                        "formal_key": "policy_number",
+                        "note": "rotate 90"
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 125,
+                        "y": 220,
+                        "width": 86,
+                        "height": 34
+                    },
+                    "region_attributes": {
+                        "label": "既往歴",
+                        "key_type": "key",
+                        "text_category": "japanese",
+                        "text_type": "printed",
+                        "formal_key": "medical_history",
+                        "note": ""
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 837,
+                        "y": 731,
+                        "width": 146,
+                        "height": 32
+                    },
+                    "region_attributes": {
+                        "label": "2017/11/11",
+                        "key_type": "value",
+                        "text_category": "alphabet",
+                        "text_type": "printed",
+                        "formal_key": "implemented_date",
+                        "note": ""
+                    }
+                },
+                {
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": 989,
+                        "y": 1098,
+                        "width": 33,
+                        "height": 27
+                    },
+                    "region_attributes": {
+                        "label": "59",
+                        "key_type": "value",
+                        "text_category": "number",
+                        "text_type": "printed",
+                        "formal_key": "pressure_min_measured_1st",
+                        "note": ""
+                    }
+                }
+            ],
+            "file_attributes": {}
+        },
+        "_via_attributes": {
+            "region": {
+                "label": {
+                    "type": "text",
+                    "description": "",
+                    "default_value": ""
+                },
+                "key_type": {
+                    "type": "dropdown",
+                    "description": "",
+                    "options": {
+                        "key": "",
+                        "value": "",
+                        "common_key": "",
+                        "master": "",
+                        "other": ""
+                    },
+                    "default_options": {
+                        "other": "true"
+                    }
+                },
+                "text_category": {
+                    "type": "dropdown",
+                    "description": "",
+                    "options": {
+                        "name": "",
+                        "address": "",
+                        "email": "",
+                        "number": "",
+                        "alphabet": "",
+                        "japanese": "",
+                        "checkbox": "",
+                        "mix": ""
+                    },
+                    "default_options": {
+                        "japanese": "true"
+                    }
+                },
+                "text_type": {
+                    "type": "dropdown",
+                    "description": "",
+                    "options": {
+                        "handwriting": "",
+                        "printed": "",
+                        "mixed": ""
+                    },
+                    "default_options": {
+                        "printed": "true"
+                    }
+                },
+                "formal_key": {
+                    "type": "text",
+                    "description": "",
+                    "default_value": ""
+                },
+                "note": {
+                    "type": "text",
+                    "description": "",
+                    "default_value": ""
+                }
+            },
+            "file": {}
+        }
+    }
+}
