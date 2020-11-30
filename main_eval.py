@@ -144,7 +144,7 @@ def _reformat_dict(model, list_pair, img):
                     dict_info['gt']['text_pr'] = ""
 
                     # dict_info['is_la_ok'] = (dict_info['gt']['text_pr'] == dict_info['pred']['text_pr']) or (pair['iou'] > 0.8)
-                    dict_info['is_la_ok'] =  (pair['iou'] > 0.6)
+                    dict_info['is_la_ok'] =  (pair['iou'] > 0.7)
                     
                     dict_info['is_la_ocr_ok'] = (dict_info['gt']['label'] == dict_info['pred']['text']) and (pair['iou'] > 0.3)
                     dict_info['is_ocr_only_ok'] = (dict_info['gt']['label'] == dict_info['gt']['text_pr'])
