@@ -5,7 +5,7 @@ import os
 import json
 import numpy as np
 import utils as utils
-from ocr.cannet.model import CannetOCR
+# from ocr.cannet.model import CannetOCR
 # from ocr import JeffOCR
 import cv2
 import pandas as pd
@@ -16,14 +16,29 @@ from PIL import Image, ImageDraw, ImageFont
 LIST_TYPE = ['jp', 'latin', 'jp-text', 'latin-text', 'text']
 
 
-def get_info_from_gt_dict(_dict, script=[]):
+def get_info_from_gt_dict(_dict, script=[], ignore_formal_key=[]):
     idx2key = []
     list_rect = []
 
-    region_list = _dict['attributes']['_via_img_metadata']['regions']
+    if 'regions' in _dict:
+        region_list = _dict['regions']
+    else:
+        region_list = _dict['attributes']['_via_img_metadata']['regions']
+
+    # MERGE H6
+    # region_list = utils.merge_key_value_smtb(region_list)
+
     for i, region in enumerate(region_list):
-        key_type = region['region_attributes']['key_type']
-        if key_type.strip() in script and region['shape_attributes']['name'] == 'rect':
+        if "key_type" in region['region_attributes']:
+            region['region_attributes']['structure_type'] = region['region_attributes']['key_type']
+
+        if "label" in region['region_attributes']:
+            region['region_attributes']['text'] = region['region_attributes']['label']
+
+        key_type = region['region_attributes']['structure_type']
+        fm_key = region['region_attributes']['formal_key']
+
+        if key_type.strip() in script and region['shape_attributes']['name'] == 'rect' and fm_key not in ignore_formal_key:
             idx2key.append(region)
             list_rect.append(np.array([region['shape_attributes']["x"], region['shape_attributes']["y"],
                                        region['shape_attributes']["x"] + region['shape_attributes']["width"],
@@ -85,7 +100,7 @@ def match_bboxes(gt_dict, pred_dict, script=""):
     for pair in list_pair_idx_gt_pred:
         gt_i = pair[0]
         pred_i = pair[1]
-        gt_text = gt_i2k[gt_i]['region_attributes']['label']
+        gt_text = gt_i2k[gt_i]['region_attributes']['text']
         pred_text = pred_i2k[pred_i]['text']
         # gt_script = gt_dict[gt_i2k[gt_i]]["script"]
         # pred_script = pred_dict[pred_i2k[pred_i]]["script"]
@@ -111,9 +126,9 @@ def _reformat_dict(model, list_pair, img):
                         'coor': [gt_coor['y'], gt_coor['y'] + gt_coor['height'], gt_coor['x'],
                                  gt_coor['x'] + gt_coor['width']],
                         # y_top, y_bot, x_left, x_right
-                        'label': pair['gt']['region_attributes']['label'],
+                        'label': pair['gt']['region_attributes']['text'],
                         'img': None,
-                        'key_type': pair['gt']['region_attributes']['key_type'],
+                        'key_type': pair['gt']['region_attributes']['structure_type'],
                         'info': pair['gt'],
                         'text_pr': ''  # text was predicted by same ocr model with LA predicted model
                     },
@@ -127,7 +142,7 @@ def _reformat_dict(model, list_pair, img):
                         'text_pr': ''  # text was predicted by same ocr model with LA predicted model
                     },
                     'iou': pair['iou'],
-                    'key_type': pair['gt']['region_attributes']['key_type']
+                    'key_type': pair['gt']['region_attributes']['structure_type']
                 }
                 if pair['iou'] > 0.01:
                     # crop image
@@ -143,9 +158,14 @@ def _reformat_dict(model, list_pair, img):
                     # dict_info['gt']['text_pr'] = model.process(dict_info['gt']['img'])['text']
                     dict_info['gt']['text_pr'] = ""
 
-                    # dict_info['is_la_ok'] = (dict_info['gt']['text_pr'] == dict_info['pred']['text_pr']) or (pair['iou'] > 0.8)
-                    dict_info['is_la_ok'] =  (pair['iou'] > 0.7)
+                    dict_info['is_la_ok'] = (dict_info['gt']['label'] == dict_info['pred']['text'] and pair['iou'] > 0.3) or (pair['iou'] > 0.6)
+                    # dict_info['is_la_ok'] =  (pair['iou'] > 0.6)
                     
+                    # if dict_info['gt']['key_type'] == "key":
+                    #     dict_info['is_la_ok'] =  (pair['iou'] > 0.6)
+                    # else:
+                    #     dict_info['is_la_ok'] =  (pair['iou'] > 0.6) 
+                                     
                     dict_info['is_la_ocr_ok'] = (dict_info['gt']['label'] == dict_info['pred']['text']) and (pair['iou'] > 0.3)
                     dict_info['is_ocr_only_ok'] = (dict_info['gt']['label'] == dict_info['gt']['text_pr'])
                 else:
@@ -181,7 +201,7 @@ def _update_excel_file(list_result, out_dir):
             }
         }
         for i, detail in enumerate(list_order):
-            output_row = [
+            output_update_hlayout_24_12_row = [
                 result['basename'], i, detail['gt']['key_type'], detail['gt']['info']['region_attributes']['formal_key'], detail['iou'],
                 detail['gt']['text_pr'], detail['pred']['text_pr'],
                 detail['pred']['text'], detail['gt']['label'],
@@ -189,7 +209,7 @@ def _update_excel_file(list_result, out_dir):
                 detail['is_la_ocr_ok'],
                 detail['is_ocr_only_ok']
             ]
-            list_detail.append(output_row)
+            list_detail.append(output_update_hlayout_24_12_row)
 
             #process metric
             if dict_metric['key_type'].get(detail['key_type']) is None:
@@ -345,7 +365,11 @@ def _write_debug_image(list_result, out_dir):
         if isinstance(img, np.ndarray):
             pil_img = Image.fromarray(img, 'RGB')
         elif isinstance(img, str):
-            pil_img = Image.open(img).convert('RGB')
+            img = cv2.imread(img)
+            if img is None:
+                pil_img = Image.open(img).convert('RGB')
+            else:
+                pil_img = Image.fromarray(img, 'RGB')
         else:
             raise ValueError('Not support type {}'.format(type(img)))
         draw = ImageDraw.Draw(pil_img)
@@ -370,8 +394,8 @@ def _write_debug_image(list_result, out_dir):
             draw.text([detail['gt']['coor'][3]+3, detail['pred']['coor'][0]], str(i), font=unicode_font, fill=color_index, align='center')
 
         del draw
-        output_fullname = os.path.join(debug_dir, result['basename']+'.png')
-        pil_img.save(output_fullname)
+        output_update_hlayout_24_12_fullname = os.path.join(debug_dir, result['basename']+'.png')
+        pil_img.save(output_update_hlayout_24_12_fullname)
 
 def expand_textline_wh(linecut_data, pad_height = 3, pad_width = 5):
     for linecut in linecut_data:
@@ -384,7 +408,8 @@ def expand_textline_wh(linecut_data, pad_height = 3, pad_width = 5):
         linecut['location'] = [[minx - pad_width, miny - pad_height], [maxx + pad_width, miny - pad_height], [maxx + pad_width, maxy + pad_height], [minx - pad_width, maxy + pad_height]]
     return linecut_data
 
-def _evaluate_dir(model, gt_dir, pred_dir, out_dir, image_root="", list_group_script=["key", "value", "common_key"],
+# , "common_key", "key_value"
+def _evaluate_dir(model, gt_dir, pred_dir, out_dir, image_root="", list_group_script=["key", "value"],
                   list_min_iou=[0.6], debug=True):
     list_gt_files = []
     list_pred_files = []
@@ -395,19 +420,20 @@ def _evaluate_dir(model, gt_dir, pred_dir, out_dir, image_root="", list_group_sc
                 filename = os.path.join(_root, f)
                 list_gt_files.append(filename)
 
-    if debug:
-        dict_bn_img = dict()
-        if os.path.exists(image_root):
-            list_gt_basenames = []
-            for gt_fullname in list_gt_files:
-                basename = os.path.splitext(os.path.basename(gt_fullname))[0]
-                list_gt_basenames.append(basename)
-            for _root, _dirs, _files in os.walk(image_root):
-                for f in _files:
-                    if f.endswith(IMG_EXTENSION):
-                        img_basename = os.path.splitext(os.path.basename(f))[0]
-                        if img_basename in list_gt_basenames:
-                            dict_bn_img[img_basename] = os.path.join(_root, f)
+    dict_bn_img = dict()
+
+    if os.path.exists(image_root):
+        list_gt_basenames = []
+        for gt_fullname in list_gt_files:
+            basename = os.path.splitext(os.path.basename(gt_fullname))[0]
+            list_gt_basenames.append(basename)
+        for _root, _dirs, _files in os.walk(image_root):
+            for f in _files:
+                # print(f)
+                # if f.endswith(IMG_EXTENSION):
+                img_basename = os.path.splitext(os.path.basename(f))[0]
+                if img_basename in list_gt_basenames:
+                    dict_bn_img[img_basename] = os.path.join(_root, f)
 
     for _root, _dirs, _files in os.walk(pred_dir):
         for f in _files:
@@ -418,6 +444,9 @@ def _evaluate_dir(model, gt_dir, pred_dir, out_dir, image_root="", list_group_sc
     print("Total Groundtruth JSON: {}".format(len(list_gt_files)))
     print("Total Prediction JSON: {}".format(len(list_pred_files)))
 
+    # if len(list_gt_files) > 1000:
+    #     return
+        
     list_final_result = []
 
     for gt_file in list_gt_files:
@@ -430,7 +459,13 @@ def _evaluate_dir(model, gt_dir, pred_dir, out_dir, image_root="", list_group_sc
         elif os.path.exists(os.path.join(pred_dir, basename[0] + basename[1])):
             matched_pred_file = basename[0] + basename[1]
         try:
-            img = np.asarray(Image.open(dict_bn_img[basename[0]]))
+            # img = np.asarray(Image.open(dict_bn_img[basename[0]]))
+
+            img = cv2.imread(dict_bn_img[basename[0]])
+            if img is None:
+                pil_img = Image.open(dict_bn_img[basename[0]]).convert('RGB')
+            else:
+                pil_img = Image.fromarray(img, 'RGB')
         except Exception as e:
             print(e)
             continue
@@ -439,7 +474,7 @@ def _evaluate_dir(model, gt_dir, pred_dir, out_dir, image_root="", list_group_sc
         dict_result['img'] = img
         dict_result['basename'] = basename[0]
         if matched_pred_file is not None:
-            print("Opening ",matched_pred_file)
+            # print("Opening ",matched_pred_file)
             try:
                 with open(gt_file, 'rt', encoding='utf-8') as f:
                     gt_dict = json.load(f)
@@ -460,72 +495,33 @@ def _evaluate_dir(model, gt_dir, pred_dir, out_dir, image_root="", list_group_sc
             dict_result['result'] = list_pair_keys_gt_pred
             list_final_result.append(dict_result)
 
+            # import pdb; pdb.set_trace()
+
     ### UPDATE RESULT TO EXCEL FILE
     _update_excel_file(list_final_result, out_dir)
 
     ### WRITE TO DEBUG IMAGES
-    _write_debug_image(list_final_result, out_dir)
+    if debug:
+        _write_debug_image(list_final_result, out_dir)
 
 if __name__ == '__main__':
     # test_textseg()
     LIST_INPUT_DATA = [
         {
-            'PRED_DIR': '/mnt/ai_filestore/home/jason/laocrkv/LaOcr/output/SMTB_12112020_H6_Test',
-            'OUT_DIR': '/mnt/ai_filestore/home/jason/laocrkv/LaOcr/output/SMTB_12112020_H6_Test/evaluate',
-            'GT_DIR': '/mnt/ai_filestore/home/jason/laocrkv/evaluate_LA_OCR/gt_data/SMTB_12112020_H6_Test/labels',
-            'IMAGE_DIR': '/mnt/ai_filestore/home/jason/laocrkv/evaluate_LA_OCR/gt_data/SMTB_12112020_H6_Test/images',
-            'IS_RUN': False
-        },
-        {
-            'PRED_DIR': '/mnt/ai_filestore/home/jason/laocrkv/LaOcr/output/SMTB_12112020_H6_Val',
-            'OUT_DIR': '/mnt/ai_filestore/home/jason/laocrkv/LaOcr/output/SMTB_12112020_H6_Val/evaluate',
-            'GT_DIR': '/mnt/ai_filestore/home/jason/laocrkv/evaluate_LA_OCR/gt_data/SMTB_12112020_H6_Val/labels',
-            'IMAGE_DIR': '/mnt/ai_filestore/home/jason/laocrkv/evaluate_LA_OCR/gt_data/SMTB_12112020_H6_Val/images',
-            'IS_RUN': False
-        },
-        {
-            'PRED_DIR': '/mnt/ai_filestore/home/jason/laocrkv/LaOcr/output/SMTB_12112020_M19_Test',
-            'OUT_DIR': '/mnt/ai_filestore/home/jason/laocrkv/LaOcr/output/SMTB_12112020_M19_Test/evaluate',
-            'GT_DIR': '/mnt/ai_filestore/home/jason/laocrkv/evaluate_LA_OCR/gt_data/SMTB_12112020_M19_Test/labels',
-            'IMAGE_DIR': '/mnt/ai_filestore/home/jason/laocrkv/evaluate_LA_OCR/gt_data/SMTB_12112020_M19_Test/images',
+            'PRED_DIR': '/mnt/lustre/home/jason/projects/prj_tmc4/data/Test_Phase_6/ocr_output',
+            'OUT_DIR': '/mnt/lustre/home/jason/projects/prj_tmc4/data/Test_Phase_6//evaluate_la_ocr',
+            'GT_DIR': '/mnt/lustre/home/jason/projects/prj_tmc4/data/Test_Phase_6/labels',
+            'IMAGE_DIR': '/mnt/lustre/home/jason/projects/prj_tmc4/data/Test_Phase_6/images',
             'IS_RUN': True
         },
-        {
-            'PRED_DIR': '/mnt/ai_filestore/home/jason/laocrkv/LaOcr/output/SMTB_12112020_M19_Val',
-            'OUT_DIR': '/mnt/ai_filestore/home/jason/laocrkv/LaOcr/output/SMTB_12112020_M19_Val/evaluate',
-            'GT_DIR': '/mnt/ai_filestore/home/jason/laocrkv/evaluate_LA_OCR/gt_data/SMTB_12112020_M19_Val/labels',
-            'IMAGE_DIR': '/mnt/ai_filestore/home/jason/laocrkv/evaluate_LA_OCR/gt_data/SMTB_12112020_M19_Val/images',
-            'IS_RUN': True
-        },
-        {
-            'PRED_DIR': '/mnt/ai_filestore/home/jason/laocrkv/LaOcr/output/SMTB_12112020_M31_Test',
-            'OUT_DIR': '/mnt/ai_filestore/home/jason/laocrkv/LaOcr/output/SMTB_12112020_M31_Test/evaluate',
-            'GT_DIR': '/mnt/ai_filestore/home/jason/laocrkv/evaluate_LA_OCR/gt_data/SMTB_12112020_M31_Test/labels',
-            'IMAGE_DIR': '/mnt/ai_filestore/home/jason/laocrkv/evaluate_LA_OCR/gt_data/SMTB_12112020_M31_Test/images',
-            'IS_RUN': False
-        },
-        {
-            'PRED_DIR': '/mnt/ai_filestore/home/jason/laocrkv/LaOcr/output/SMTB_12112020_M31_Val',
-            'OUT_DIR': '/mnt/ai_filestore/home/jason/laocrkv/LaOcr/output/SMTB_12112020_M31_Val/evaluate',
-            'GT_DIR': '/mnt/ai_filestore/home/jason/laocrkv/evaluate_LA_OCR/gt_data/SMTB_12112020_M31_Val/labels',
-            'IMAGE_DIR': '/mnt/ai_filestore/home/jason/laocrkv/evaluate_LA_OCR/gt_data/SMTB_12112020_M31_Val/images',
-            'IS_RUN': False
-        },
-        {
-            'PRED_DIR': '/mnt/ai_filestore/home/jason/laocrkv/LaOcr/output/SMTB_12112020_S23_Val',
-            'OUT_DIR': '/mnt/ai_filestore/home/jason/laocrkv/LaOcr/output/SMTB_12112020_S23_Val/evaluate',
-            'GT_DIR': '/mnt/ai_filestore/home/jason/laocrkv/evaluate_LA_OCR/gt_data/SMTB_12112020_S23_Val/labels',
-            'IMAGE_DIR': '/mnt/ai_filestore/home/jason/laocrkv/evaluate_LA_OCR/gt_data/SMTB_12112020_S23_Val/images',
-            'IS_RUN': False
-        }
     ]
-    IMG_EXTENSION = '.png'
 
-    model = CannetOCR(weights_path=r'/mnt/ai_filestore/home/jason/laocrkv/LaOcr/models/ocr/CannetOCR-v2.6.0.pt', device="gpu")
+    # model = CannetOCR(weights_path=r'/mnt/ai_filestore/home/jason/laocrkv/LaOcr/models/ocr/CannetOCR-v2.6.0.pt', device="gpu")
     
     # model = JeffOCR(weights_path=r'/mnt/ai_filestore/home/jason/laocrkv/LaOcr/models/ocr/JeffOCR_Tokyomarine.pth')
-
+    model = None
     for info in LIST_INPUT_DATA:
         if info['IS_RUN']:
+            print("Processing ", info['IMAGE_DIR'])
             makedir(info['OUT_DIR'])
             _evaluate_dir(model, info['GT_DIR'], info['PRED_DIR'], out_dir=info['OUT_DIR'], image_root=info['IMAGE_DIR'], debug=True)

@@ -128,199 +128,101 @@ def cvt_charset_to_ord(file_fullname, out_file_fullname):
             print('char: ({}) -> ({})'.format(l, s))
             fout.write("%s\n" % s)
 
-#
-# def parse_master_label(filename, kw_file_fullname=None, save_csv=True, min_iou=0.65, actual_failed_min_iou=1000.0):
-#     df = pd.DataFrame()
-#     list_labels = []
-#
-#     list_nolabel_dict = []
-#
-#     if kw_file_fullname and os.path.exists(kw_file_fullname):
-#         with open(kw_file_fullname) as f:
-#             list_kws = f.readlines()
-#     else:
-#         list_kws = None
-#
-#     list_kws = [normalize_text(kw.strip()) for kw in list_kws]
-#     print('list_kws: {}'.format(list_kws))
-#
-#     json_base = os.path.basename(os.path.basename(filename))
-#
-#     list_wrong_type = []
-#     if filename.split('\\')[-1] in SPECIAL_JSON_FILES:
-#         json_file = json.load(codecs.open(filename, 'r', 'utf-8-sig'))
-#     else:
-#         with open(filename, 'rt', encoding='utf-8') as f:
-#             json_file = json.load(f)
-#
-#     # basename = os.path.splitext(os.path.basename(filename))[0]
-#     doc_dict = dict()
-#
-#     for key in json_file:
-#         label_dict = json_file[key]
-#         img_name = label_dict['filename']
-#         print('Base img name: {}, base json name: {}'.format(img_name.split('.')[0], json_base.split('.')[0]))
-#         if not img_name.endswith(IMG_EXTENSION) or img_name.split('.')[0] != json_base.split('.')[0]:
-#             print('Skip image {} for not relate to {}'.format(img_name, json_base))
-#             continue
-#         else:
-#             print('Processing {}'.format(img_name))
-#
-#         _size = label_dict['size']
-#
-#         # List
-#         regions = label_dict['regions']
-#         df = pd.DataFrame(regions)
-#         list_rows = []
-#         non_label_count = {'jp': 0, 'jp-text': 0, 'latin': 0, 'latin-text': 0, 'text': 0}
-#         total_label_count = {'jp': 0, 'jp-text': 0, 'latin': 0, 'latin-text': 0, 'text': 0}
-#         label_count = 0
-#         list_rects = []
-#
-#         for ind, reg in enumerate(regions):
-#             row = dict()
-#
-#             has_label = False
-#             for key, value in reg['region_attributes'].items():
-#                 if key in LABEL_NAMES:
-#                     _label = normalize_text(value.strip())
-#                     has_label = True
-#                     break
-#
-#             if 'Type' in reg['region_attributes']:
-#                 _type = reg['region_attributes']['Type'].lower()
-#             elif 'type' in reg['region_attributes']:
-#                 _type = reg['region_attributes']['type'].lower()
-#             else:
-#                 _type = 'text'
-#
-#             if has_label:
-#                 for k in LIST_TYPE:
-#                     if k == _type:
-#                         if not _label:
-#                             non_label_count[k] += 1
-#                         total_label_count[k] += 1
-#                         break
-#             else:
-#                 _label = ''
-#                 # raise ValueError("Don't have label: {}".format(filename))
-#
-#             # _type = reg['region_attributes']['Type']
-#             _shape = reg['shape_attributes']['name']
-#
-#             # print(_shape)
-#             if _shape not in SHAPE:
-#                 print('>> Skip because {} is not in {}'.format(_shape, SHAPE))
-#                 # raise ValueError('Invalid shape!')
-#                 continue
-#
-#             _x1 = reg['shape_attributes']['x']
-#             _y1 = reg['shape_attributes']['y']
-#             _x2 = reg['shape_attributes']['width'] + _x1 - 1
-#             _y2 = reg['shape_attributes']['height'] + _y1 - 1
-#
-#             label_count += 1
-#             if _type:
-#                 _type = _type.strip()
-#             valid_script = 1
-#             if _type:
-#                 if not _type in LIST_TYPE:
-#                     # print('[WARN] INVALID type: {}'.format(_type))
-#                     if _type in CORRECT_TYPE_MAP:
-#                         valid_script = 1
-#                         _type_ = CORRECT_TYPE_MAP[_type]
-#                         # print('[INFO] Correct {} to {}'.format(_type, _type_))
-#                         _type = _type_
-#                     else:
-#                         valid_script = 0
-#                         list_wrong_type.append(_type)
-#                         print('[ERR] Cannot find correction of {}'.format(_type))
-#
-#             _label = normalize_text(_label)
-#             kws = [{"text": normalize_text(kw), "score": 1.0} for kw in list_kws if kw in _label]
-#
-#             str_ind = ""
-#             if 'text' in _type:
-#                 str_ind = "img%02d" % ind
-#             else:
-#                 str_ind = "box%02d" % ind
-#
-#             row = {"index": str_ind, "father_index": "", "text": _label, "score": 1.0, "kws": kws, "script": _type,
-#                    "valid_script": valid_script, "x1": _x1, "y1": _y1, "x2": _x2, "y2": _y2, "shape": _shape}
-#             list_rows.append(row)
-#             list_rects.append([_x1, _y1, _x2, _y2])
-#
-#         arr_rect = np.stack(list_rects, axis=0)
-#         arr_iou = measure_np_iou(arr_rect, arr_rect, mode='min')
-#
-#         # Ignore self comparisons
-#         np.fill_diagonal(arr_iou, 0.0)
-#
-#         # print("arr_iou: {}".format(arr_iou))
-#         print("arr_iou shape: {}".format(arr_iou.shape))
-#
-#         # raise ValueError('Stop debugging!')
-#         num_row = len(list_rows)
-#         for c, rect_c in enumerate(list_rects):
-#             if "text" not in list_rows[c]["script"]:
-#                 arr_iou[:, c] = 0.0
-#
-#         # arr_iou[arr_iou < min_iou] = 0.0
-#         max_iou_idx = np.argmax(arr_iou, axis=1)
-#         print("max_idx: {}".format(np.max(arr_iou, axis=1)))
-#         for r, rect_r in enumerate(list_rects):
-#             if "text" not in list_rows[r]["script"]:
-#                 best_iou = arr_iou[r, max_iou_idx[r]]
-#                 if best_iou > min_iou:
-#                     if list_rows[max_iou_idx[r]]["index"] == list_rows[r]["index"]:
-#                         raise ValueError("[WARN] >>> Incest detected {}!".format(list_rows[r]["index"]))
-#                     list_rows[r]["father_index"] = list_rows[max_iou_idx[r]]["index"]
-#
-#                     print("Father of {} is {} with IoU min: {}".format(list_rows[r]["index"],
-#                                                                        list_rows[max_iou_idx[r]]["index"], best_iou))
-#                 else:
-#                     # print('actual_failed_min_iou: {}, best_iou: {}'.format(actual_failed_min_iou, best_iou))
-#                     if actual_failed_min_iou > best_iou and best_iou > 0.5:
-#                         actual_failed_min_iou = best_iou
-#                     # print('actual_failed_min_iou: {}, best_iou: {}'.format(actual_failed_min_iou, best_iou))
-#                     print("[WARN] {} has no father because max IoU {} < {}".format(list_rows[r]["index"], best_iou,
-#                                                                                    min_iou))
-#             else:
-#                 print("Skip father {}".format(list_rows[r]["index"]))
-#
-#         for i, row in enumerate(list_rows):
-#             if row["father_index"] == "" or "text" in row["script"]:
-#                 list_children = []
-#                 for j in range(len(list_rows)):
-#                     if list_rows[j]["father_index"] == row["index"]:
-#                         list_children.append(list_rows[j])
-#                 sorted_list_children = sorted(list_children, key=lambda k: k['x1'])
-#
-#                 list_text = ""
-#                 list_kws = []
-#                 for rw in sorted_list_children:
-#                     list_text += rw["text"]
-#                     list_kws += [kw["text"] for kw in rw["kws"]]
-#
-#                 if list_text:
-#                     list_rows[i]["text"] = normalize_text(''.join(list_text))
-#                     list_rows[i]["kws"] = [{"text": tx, "score": 1.0} for tx in list(set(list_kws))]
-#                 # list_rows[i]["text"] = ''.join([rw["text"] for rw in sorted_list_children])
-#
-#         for i, row in enumerate(list_rows):
-#             doc_dict[row["index"]] = row
-#
-#         # Exit the loop
-#         break
-#
-#     print('actual_failed_min_iou: {}'.format(actual_failed_min_iou))
-#     # df = pd.DataFrame(list_rows)
-#     return doc_dict, actual_failed_min_iou
-#
+def get_min_max_xy(cors):
+    """
+    Get min, max of x, y cordinates
+    :param cors: all corners of shape.
+    :return: (int, int, int, int)
+    Example:
+    >>> get_min_max_xy([[1866, 237], [2003, 237], [2003, 269], [1866, 269]])
+    (1866, 237, 2003, 269)
+    """
+    ys = [cor[1] for cor in cors]
+    xs = [cor[0] for cor in cors]
+
+    minx, miny, maxx, maxy = min(xs), min(ys), max(xs), max(ys)
+    return (minx, miny, maxx, maxy)
+
+def calculateIntersection(a0, a1, b0, b1):
+    """
+    Calculate intersection between two pair of cordinates
+    Args:
+        -------------
+        a0, a1 (a0 < a1): min and max cordinates of line 1
+        b0, b1 (b0 < b1): min and max cordinates of line 2
+    Return:
+        Intersection between two lines: [a0, a1] vs [b0, b1]
+    """
+    if a0 >= b0 and a1 <= b1:  # Contained
+        intersection = a1 - a0
+    elif a0 < b0 and a1 > b1:  # Contains
+        intersection = b1 - b0
+    elif a0 < b0 and a1 > b0:  # Intersects right
+        intersection = a1 - b0
+    elif a1 > b1 and a0 < b1:  # Intersects left
+        intersection = b1 - a0
+    else:  # No intersection (either side)
+        intersection = 0
+
+    return intersection
+
+def merge_key_value_smtb(regions):
+    merged_regions = []
+    limit_distance = 150
+    is_merged = [False for i in range(len(regions))]
+    for idx, region_1 in enumerate(regions):
+        if is_merged[idx] or region_1['region_attributes']['key_type'] != "key" or region_1['shape_attributes']['name'] != 'rect':
+            continue
+        minx, miny, maxx, maxy = region_1['shape_attributes']["x"], region_1['shape_attributes']["y"],region_1['shape_attributes']["x"] + region_1['shape_attributes']["width"],region_1['shape_attributes']["y"] + region_1['shape_attributes']["height"]
+
+        same_row_textlines = []
+        for idx_2, region_2 in enumerate(regions):
+            if idx == idx_2 or region_2['region_attributes']['key_type'] != "value" or region_2['shape_attributes']['name'] != 'rect':
+                continue
+
+            minX, minY, maxX, maxY = region_2['shape_attributes']["x"], region_2['shape_attributes']["y"],region_2['shape_attributes']["x"] + region_2['shape_attributes']["width"],region_2['shape_attributes']["y"] + region_2['shape_attributes']["height"]
+            if minX <= minx or abs(minX - maxx) > limit_distance:
+                continue
+            overlap_h = calculateIntersection(miny, maxy, minY, maxY)
+            if overlap_h / (maxy - miny) > 0.4:  
+                same_row_textlines.append((minX, idx_2, minX, minY, maxX, maxY))
+        
+        if len(same_row_textlines):
+            same_row_textlines.sort(key = lambda x : x[0])
+            is_merged[same_row_textlines[0][1]] = True
+            is_merged[idx] = True
+
+            minX, minY, maxX, maxY = same_row_textlines[0][2], same_row_textlines[0][3], same_row_textlines[0][4], same_row_textlines[0][5] 
+            new_minx = min(minx, minX)
+            new_miny = min(miny, minY)
+            new_maxx = max(maxx, maxX)
+            new_maxy = max(maxy, maxY)
+            
+            merged_regions.append({
+                    "shape_attributes": {
+                        "name": "rect",
+                        "x": new_minx,
+                        "y": new_miny,
+                        "width": new_maxx - new_minx,
+                        "height": new_maxy - new_miny
+                    },
+                    "region_attributes": {
+                        "label": "",
+                        "key_type": "key_value",
+                        "text_category": "mix",
+                        "text_type": "printed",
+                        "formal_key": "",
+                        "note": ""
+                    }
+                })
+    
+    for i in range(len(regions)):
+        if not is_merged[i]:
+            merged_regions.append(regions[i])
+    
+    return merged_regions
 
 def measure_np_iou(bboxes1, bboxes2, mode='iou'):
-    # print("bboxes1", bboxes1)
-    # print("bboxes2", bboxes2)
     x11, y11, x12, y12 = np.split(bboxes1, 4, axis=1)
     x21, y21, x22, y22 = np.split(bboxes2, 4, axis=1)
 
