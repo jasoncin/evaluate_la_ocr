@@ -147,3 +147,6 @@ models/
 pred_data/
 
 # End of https://www.toptal.com/developers/gitignore/api/python
+
+data/
+.DS_Store

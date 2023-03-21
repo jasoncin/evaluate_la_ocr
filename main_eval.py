@@ -12,6 +12,8 @@ import pandas as pd
 import datetime
 from operator import itemgetter
 from PIL import Image, ImageDraw, ImageFont
+from shutil import copyfile
+
 
 LIST_TYPE = ['jp', 'latin', 'jp-text', 'latin-text', 'text']
 
@@ -37,6 +39,10 @@ def get_info_from_gt_dict(_dict, script=[], ignore_formal_key=[]):
 
         key_type = region['region_attributes']['structure_type']
         fm_key = region['region_attributes']['formal_key']
+
+        
+        if region['shape_attributes']['name'] == 'rect' and region['shape_attributes']["height"] / region['shape_attributes']["width"] >= 2:
+            continue
 
         if key_type.strip() in script and region['shape_attributes']['name'] == 'rect' and fm_key not in ignore_formal_key:
             idx2key.append(region)
@@ -155,8 +161,8 @@ def _reformat_dict(model, list_pair, img):
                     # import pdb; pdb.set_trace()
                     
                     # dict_info['pred']['text_pr'] = model.process(dict_info['pred']['img'])['text']
-                    # dict_info['gt']['text_pr'] = model.process(dict_info['gt']['img'])['text']
-                    dict_info['gt']['text_pr'] = ""
+                    dict_info['gt']['text_pr'] = model.process(dict_info['gt']['img'])['text']
+                    # dict_info['gt']['text_pr'] = ""
 
                     dict_info['is_la_ok'] = (dict_info['gt']['label'] == dict_info['pred']['text'] and pair['iou'] > 0.3) or (pair['iou'] > 0.6)
                     # dict_info['is_la_ok'] =  (pair['iou'] > 0.6)
@@ -167,7 +173,7 @@ def _reformat_dict(model, list_pair, img):
                     #     dict_info['is_la_ok'] =  (pair['iou'] > 0.6) 
                                      
                     dict_info['is_la_ocr_ok'] = (dict_info['gt']['label'] == dict_info['pred']['text']) and (pair['iou'] > 0.3)
-                    dict_info['is_ocr_only_ok'] = (dict_info['gt']['label'] == dict_info['gt']['text_pr'])
+                    dict_info['is_ocr_only_ok'] = (dict_info['gt']['label'].strip() == dict_info['gt']['text_pr'].strip())
                 else:
                     dict_info['is_la_ok'] = False
                     dict_info['is_la_ocr_ok'] = False
@@ -408,9 +414,30 @@ def expand_textline_wh(linecut_data, pad_height = 3, pad_width = 5):
         linecut['location'] = [[minx - pad_width, miny - pad_height], [maxx + pad_width, miny - pad_height], [maxx + pad_width, maxy + pad_height], [minx - pad_width, maxy + pad_height]]
     return linecut_data
 
+def convert_to_ocr_output_dir(input_path, output_path):
+    for img_name in os.listdir(input_path):
+        if '.DS_Store' in img_name:
+            continue
+        try:
+            copyfile(os.path.join(os.path.join(input_path, img_name), "ocr_output.json"),
+                    os.path.join(output_path, "{}.json".format(img_name)))
+        except Exception:
+            copyfile(os.path.join(os.path.join(input_path, img_name), "ocr.json"),
+                    os.path.join(output_path, "{}.json".format(img_name)))
+        
 # , "common_key", "key_value"
 def _evaluate_dir(model, gt_dir, pred_dir, out_dir, image_root="", list_group_script=["key", "value"],
                   list_min_iou=[0.6], debug=True):
+    import tempfile
+
+    ocr_output_dir = None
+    if pred_dir.endswith("results") or pred_dir.endswith("results/"):
+        ocr_output_dir = tempfile.mkdtemp()
+
+        convert_to_ocr_output_dir(pred_dir, ocr_output_dir)
+    
+    pred_dir = ocr_output_dir
+
     list_gt_files = []
     list_pred_files = []
 
@@ -504,14 +531,19 @@ def _evaluate_dir(model, gt_dir, pred_dir, out_dir, image_root="", list_group_sc
     if debug:
         _write_debug_image(list_final_result, out_dir)
 
+    if ocr_output_dir is not None:
+        tempfile.rmtree(ocr_output_dir)
+
 if __name__ == '__main__':
+    from ocr.robust.model import RobustOCR
+    # from ocr.autoregressive.model import AutoregressiveOCR
     # test_textseg()
     LIST_INPUT_DATA = [
         {
-            'PRED_DIR': '/mnt/lustre/home/jason/projects/prj_tmc4/data/Test_Phase_6/ocr_output',
-            'OUT_DIR': '/mnt/lustre/home/jason/projects/prj_tmc4/data/Test_Phase_6//evaluate_la_ocr',
-            'GT_DIR': '/mnt/lustre/home/jason/projects/prj_tmc4/data/Test_Phase_6/labels',
-            'IMAGE_DIR': '/mnt/lustre/home/jason/projects/prj_tmc4/data/Test_Phase_6/images',
+            'PRED_DIR': '/Users/jason/Work/Cinnamon/evaluate_la_ocr/data/test_output_mixed_kv_layout/results',
+            'OUT_DIR': '/Users/jason/Work/Cinnamon/evaluate_la_ocr/data/test_output_mixed_kv_layout/report_benchmark',
+            'GT_DIR': '/Users/jason/Work/Cinnamon/Datasets/test/label',
+            'IMAGE_DIR': '/Users/jason/Work/Cinnamon/Datasets/test/input',
             'IS_RUN': True
         },
     ]
@@ -519,9 +551,11 @@ if __name__ == '__main__':
     # model = CannetOCR(weights_path=r'/mnt/ai_filestore/home/jason/laocrkv/LaOcr/models/ocr/CannetOCR-v2.6.0.pt', device="gpu")
     
     # model = JeffOCR(weights_path=r'/mnt/ai_filestore/home/jason/laocrkv/LaOcr/models/ocr/JeffOCR_Tokyomarine.pth')
-    model = None
+    model = RobustOCR(weights_path=r'/Users/jason/Work/Cinnamon/prj_flax_sumitomo_life_prod2_ai/weight/ocr/RobustOCR.pt')
+    # model = AutoregressiveOCR(weights_path=r'/Users/jason/Work/Cinnamon/lib-ocr/weight/autoregressive/par_general.pth')
+
     for info in LIST_INPUT_DATA:
         if info['IS_RUN']:
             print("Processing ", info['IMAGE_DIR'])
             makedir(info['OUT_DIR'])
-            _evaluate_dir(model, info['GT_DIR'], info['PRED_DIR'], out_dir=info['OUT_DIR'], image_root=info['IMAGE_DIR'], debug=True)
+            _evaluate_dir(model, info['GT_DIR'], info['PRED_DIR'], out_dir=info['OUT_DIR'], image_root=info['IMAGE_DIR'], debug=False)
