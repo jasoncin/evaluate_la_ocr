@@ -18,7 +18,7 @@ from shutil import copyfile
 LIST_TYPE = ['jp', 'latin', 'jp-text', 'latin-text', 'text']
 
 
-def get_info_from_gt_dict(_dict, script=[], ignore_formal_key=[]):
+def get_info_from_gt_dict(_dict, script=[], ignore_formal_key=[], filter_vertical=True, filter_horizontal=False):
     idx2key = []
     list_rect = []
 
@@ -40,9 +40,14 @@ def get_info_from_gt_dict(_dict, script=[], ignore_formal_key=[]):
         key_type = region['region_attributes']['structure_type']
         fm_key = region['region_attributes']['formal_key']
 
+        # FILTER vertical textline
+        if filter_vertical:
+            if region['shape_attributes']['name'] == 'rect' and region['shape_attributes']["height"] / region['shape_attributes']["width"] >= 2:
+                continue
         
-        if region['shape_attributes']['name'] == 'rect' and region['shape_attributes']["height"] / region['shape_attributes']["width"] >= 2:
-            continue
+        if filter_horizontal:
+            if region['shape_attributes']['name'] == 'rect' and region['shape_attributes']["width"] / region['shape_attributes']["height"] >= 2:
+                continue
 
         if key_type.strip() in script and region['shape_attributes']['name'] == 'rect' and fm_key not in ignore_formal_key:
             idx2key.append(region)
@@ -80,8 +85,8 @@ def get_info_from_pred_dict(_dict, script=""):
     return arr, idx2key
 
 
-def match_bboxes(gt_dict, pred_dict, script=""):
-    arr_gt_rect, gt_i2k = get_info_from_gt_dict(gt_dict, script=script)
+def match_bboxes(gt_dict, pred_dict, script="", filter_vertical=True, filter_horizontal=False):
+    arr_gt_rect, gt_i2k = get_info_from_gt_dict(gt_dict, script=script, filter_vertical=filter_vertical, filter_horizontal=filter_horizontal)
     arr_pred_rect, pred_i2k = get_info_from_pred_dict(pred_dict)
 
     if (len(arr_gt_rect) > 0 and len(arr_pred_rect) > 0):
@@ -427,7 +432,7 @@ def convert_to_ocr_output_dir(input_path, output_path):
         
 # , "common_key", "key_value"
 def _evaluate_dir(model, gt_dir, pred_dir, out_dir, image_root="", list_group_script=["key", "value"],
-                  list_min_iou=[0.6], debug=True):
+                  list_min_iou=[0.6], debug=True, filter_vertical=True, filter_horizontal=True):
     import tempfile
 
     ocr_output_dir = None
@@ -513,7 +518,7 @@ def _evaluate_dir(model, gt_dir, pred_dir, out_dir, image_root="", list_group_sc
                 print(e, matched_pred_file)
                 continue
             #measure the iou
-            list_pair_keys_gt_pred = match_bboxes(gt_dict, pred_dict, script=list_group_script)
+            list_pair_keys_gt_pred = match_bboxes(gt_dict, pred_dict, script=list_group_script, filter_vertical=filter_vertical, filter_horizontal=filter_horizontal)
 
             #reformat data and run ocr
             list_pair_keys_gt_pred = _reformat_dict(model, list_pair_keys_gt_pred, img)
@@ -531,8 +536,8 @@ def _evaluate_dir(model, gt_dir, pred_dir, out_dir, image_root="", list_group_sc
     if debug:
         _write_debug_image(list_final_result, out_dir)
 
-    if ocr_output_dir is not None:
-        tempfile.rmtree(ocr_output_dir)
+    # if ocr_output_dir is not None:
+    #     tempfile.rmtree(ocr_output_dir)
 
 if __name__ == '__main__':
     from ocr.robust.model import RobustOCR
@@ -541,21 +546,26 @@ if __name__ == '__main__':
     LIST_INPUT_DATA = [
         {
             'PRED_DIR': '/Users/jason/Work/Cinnamon/evaluate_la_ocr/data/test_output_mixed_kv_layout/results',
-            'OUT_DIR': '/Users/jason/Work/Cinnamon/evaluate_la_ocr/data/test_output_mixed_kv_layout/report_benchmark',
-            'GT_DIR': '/Users/jason/Work/Cinnamon/Datasets/test/label',
-            'IMAGE_DIR': '/Users/jason/Work/Cinnamon/Datasets/test/input',
-            'IS_RUN': True
+            'OUT_DIR': '/Users/jason/Work/Cinnamon/evaluate_la_ocr/data/test_output_mixed_kv_layout/report_benchmark_ocr_finetuned_101',
+            'GT_DIR': '/Users/jason/Work/Cinnamon/Datasets/SumitomoLife/full_test/label',
+            'IMAGE_DIR': '/Users/jason/Work/Cinnamon/Datasets/SumitomoLife/full_test/input',
+            'IS_RUN': True,
+            'FILTER_VERTICAL': True,
+            'FILTER_HORIZONTAL': False
         },
     ]
 
     # model = CannetOCR(weights_path=r'/mnt/ai_filestore/home/jason/laocrkv/LaOcr/models/ocr/CannetOCR-v2.6.0.pt', device="gpu")
     
     # model = JeffOCR(weights_path=r'/mnt/ai_filestore/home/jason/laocrkv/LaOcr/models/ocr/JeffOCR_Tokyomarine.pth')
-    model = RobustOCR(weights_path=r'/Users/jason/Work/Cinnamon/prj_flax_sumitomo_life_prod2_ai/weight/ocr/RobustOCR.pt')
+    # model = RobustOCR(weights_path=r'/Users/jason/Work/Cinnamon/prj_flax_sumitomo_life_prod2_ai/weight/ocr/RobustOCR.pt')
+    model = RobustOCR(weights_path=r'weights/Robust-SumitomoLife-General-Ratio-0.5-100_20230402_162046UTC_bestAC3_9468_Epoch19Fit1.pt')
+
+    # model = RobustOCR(weights_path=r'/Users/jason/Work/Cinnamon/evaluate_la_ocr/Robust-SumitomoLife_20230326_161125UTC_bestAC3_9708_Epoch32Fit0.pt')
     # model = AutoregressiveOCR(weights_path=r'/Users/jason/Work/Cinnamon/lib-ocr/weight/autoregressive/par_general.pth')
 
     for info in LIST_INPUT_DATA:
         if info['IS_RUN']:
             print("Processing ", info['IMAGE_DIR'])
             makedir(info['OUT_DIR'])
-            _evaluate_dir(model, info['GT_DIR'], info['PRED_DIR'], out_dir=info['OUT_DIR'], image_root=info['IMAGE_DIR'], debug=False)
+            _evaluate_dir(model, info['GT_DIR'], info['PRED_DIR'], out_dir=info['OUT_DIR'], image_root=info['IMAGE_DIR'], debug=False, filter_vertical=info["FILTER_VERTICAL"], filter_horizontal=info["FILTER_HORIZONTAL"])
