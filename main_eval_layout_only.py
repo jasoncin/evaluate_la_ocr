@@ -165,8 +165,8 @@ def _reformat_dict(model, list_pair, img):
                     # import pdb; pdb.set_trace()
                     
                     # dict_info['pred']['text_pr'] = model.process(dict_info['pred']['img'])['text']
-                    dict_info['gt']['text_pr'] = model.process(dict_info['gt']['img'])['text']
-                    # dict_info['gt']['text_pr'] = ""
+                    # dict_info['gt']['text_pr'] = model.process(dict_info['gt']['img'])['text']
+                    dict_info['gt']['text_pr'] = ""
 
                     dict_info['is_la_ok'] = (dict_info['gt']['label'] == dict_info['pred']['text'] and pair['iou'] > 0.3) or (pair['iou'] > 0.5)
                     # dict_info['is_la_ok'] =  (pair['iou'] > 0.6)
@@ -556,50 +556,65 @@ if __name__ == '__main__':
         # "/home/jason/Work/Cinnamon/prj_flax_sumitomo_life_prod2_ai/weight/ocr_remote/Ratio-0.5-100_20230402_162046UTC_bestAC3_9468_Epoch19Fit1.pt",
         # "/home/jason/Work/Cinnamon/prj_flax_sumitomo_life_prod2_ai/weight/ocr_remote/Ratio-0.5-100-hw_20230405_025432UTC_bestAC3_9471_Epoch32Fit0.pt",
         # "/home/jason/Work/Cinnamon/prj_flax_sumitomo_life_prod2_ai/weight/ocr_remote/Robust-SumitomoLife_20230326_161125UTC_bestAC3_9708_Epoch32Fit0.pt",
-        # "/home/jason/Work/Cinnamon/prj_flax_sumitomo_life_prod2_ai/weight/ocr_remote/RobustOCR.pt",
-        # "/home/jason/Work/Cinnamon/evaluate_la_ocr/weights/SUMITO/RobustOCR_Sumitomo_20230423_113749UTC_bestAC3_9722_Epoch23Fit1.pt",
-        # "/home/jason/Work/Cinnamon/evaluate_la_ocr/weights/SUMITO/RobustOCR_Sumitomo_20230423_113749UTC_Epoch127.pth",
-        # "/home/jason/Work/Cinnamon/evaluate_la_ocr/weights/SUMITO/RobustOCR_Sumitomo_Synt_20230422_151324UTC_bestAC3_9702_Epoch14Fit2.pt",
-        # "/home/jason/Work/Cinnamon/evaluate_la_ocr/weights/SUMITO/RobustOCR_Sumitomo_Synt_20230422_151324UTC_Epoch127.pth",
-        "/home/jason/Work/Cinnamon/evaluate_la_ocr/weights/SUMITO/RobustOCR_Sumitomo_0.6_20230425_165825UTC_Epoch127.pth"
+        "/home/jason/Work/Cinnamon/prj_flax_sumitomo_life_prod2_ai/weight/ocr_remote/RobustOCR.pt",
     ]
 
     for weight_path in list_weight_path:
         LIST_INPUT_DATA = [
             {
-                'PRED_DIR': '/home/jason/Work/Cinnamon/lib-layout/data/LiefValidation/Mix_KV_Tuning_1.pth/ocr_output',
-                'OUT_DIR': '/home/jason/Work/Cinnamon/evaluate_la_ocr/data_sumitomo_validation/LiefValidation/' + str(os.path.basename(weight_path)),
-                'GT_DIR': '/home/jason/Work/Cinnamon/Datasets/sumitomo/LiefValidation/label/',
-                'IMAGE_DIR': '/home/jason/Work/Cinnamon/Datasets/sumitomo/LiefValidation/input',
+                'PRED_DIR': '/home/jason/Work/Cinnamon/lib-layout/data/AsahiTest/DcLayout_Effv2.pth/ocr_output',
+                'OUT_DIR': '/home/jason/Work/Cinnamon/evaluate_la_ocr/data/AsahiTest/DcLayout_Effv2',
+                'GT_DIR': '/home/jason/Work/Cinnamon/Datasets/asahi/AsahiTest/label/',
+                'IMAGE_DIR': '/home/jason/Work/Cinnamon/Datasets/asahi/AsahiTest/input',
                 'IS_RUN': True,
-                'FILTER_VERTICAL': True,
+                'FILTER_VERTICAL': False,
+                'FILTER_HORIZONTAL': False,
+                'DEBUG': True,
+            },
+            {
+                'PRED_DIR': '/home/jason/Work/Cinnamon/lib-layout/data/AsahiTest/DCLayout-Effv2-HW_20230619_093936UTC_epoch00042_F1-score0.827426375_Precision0.814837435_Recall0.855025116.pth/ocr_output',
+                'OUT_DIR': '/home/jason/Work/Cinnamon/evaluate_la_ocr/data/AsahiTest/DCLayout-Effv2-HW_20230619_093936UTC_epoch00042_F1-score0.827426375_Precision0.814837435_Recall0.855025116.pth',
+                'GT_DIR': '/home/jason/Work/Cinnamon/Datasets/asahi/AsahiTest/label/',
+                'IMAGE_DIR': '/home/jason/Work/Cinnamon/Datasets/asahi/AsahiTest/input',
+                'IS_RUN': True,
+                'FILTER_VERTICAL': False,
                 'FILTER_HORIZONTAL': False,
                 'DEBUG': False,
             },
             {
-                'PRED_DIR': '/home/jason/Work/Cinnamon/lib-layout/data/WebValidation/Mix_KV_Tuning_1.pth/ocr_output',
-                'OUT_DIR': '/home/jason/Work/Cinnamon/evaluate_la_ocr/data_sumitomo_validation/WebValidation/' + str(os.path.basename(weight_path)),
-                'GT_DIR': '/home/jason/Work/Cinnamon/Datasets/sumitomo/WebValidation/label/',
-                'IMAGE_DIR': '/home/jason/Work/Cinnamon/Datasets/sumitomo/WebValidation/input',
+                'PRED_DIR': '/home/jason/Work/Cinnamon/lib-layout/data/AsahiTest/DCLayout-Effv2-HW-Printed_20230622_103300UTC_epoch00151_F1-score0.827066533_Precision0.822062784_Recall0.845905828.pth/ocr_output',
+                'OUT_DIR': '/home/jason/Work/Cinnamon/evaluate_la_ocr/data/AsahiTest/DCLayout-Effv2-HW-Printed_20230622_103300UTC_epoch00151_F1-score0.827066533_Precision0.822062784_Recall0.845905828.pth',
+                'GT_DIR': '/home/jason/Work/Cinnamon/Datasets/asahi/AsahiTest/label/',
+                'IMAGE_DIR': '/home/jason/Work/Cinnamon/Datasets/asahi/AsahiTest/input',
                 'IS_RUN': True,
-                'FILTER_VERTICAL': True,
+                'FILTER_VERTICAL': False,
                 'FILTER_HORIZONTAL': False,
                 'DEBUG': False,
             },
             {
-                'PRED_DIR': '/home/jason/Work/Cinnamon/lib-layout/data/ScanValidation/Mix_KV_Tuning_1.pth/ocr_output',
-                'OUT_DIR': '/home/jason/Work/Cinnamon/evaluate_la_ocr/data_sumitomo_validation/ScanValidation/' + str(os.path.basename(weight_path)),
-                'GT_DIR': '/home/jason/Work/Cinnamon/Datasets/sumitomo/ScanValidation/label/',
-                'IMAGE_DIR': '/home/jason/Work/Cinnamon/Datasets/sumitomo/ScanValidation/input',
+                'PRED_DIR': '/home/jason/Work/Cinnamon/lib-layout/data/AsahiTest/HW_model_epoch_232_minibatch_0_0.8069940805435181/ocr_output',
+                'OUT_DIR': '/home/jason/Work/Cinnamon/evaluate_la_ocr/data/AsahiTest/HW_model_epoch_232_minibatch_0_0.8069940805435181',
+                'GT_DIR': '/home/jason/Work/Cinnamon/Datasets/asahi/AsahiTest/label/',
+                'IMAGE_DIR': '/home/jason/Work/Cinnamon/Datasets/asahi/AsahiTest/input',
                 'IS_RUN': True,
-                'FILTER_VERTICAL': True,
+                'FILTER_VERTICAL': False,
                 'FILTER_HORIZONTAL': False,
                 'DEBUG': False,
             },
-
+            {
+                'PRED_DIR': '/home/jason/Work/Cinnamon/lib-layout/data/AsahiTest/HW_Printed_model_epoch_245_minibatch_0_0.8325733542442322/ocr_output',
+                'OUT_DIR': '/home/jason/Work/Cinnamon/evaluate_la_ocr/data/AsahiTest/HW_Printed_model_epoch_245_minibatch_0_0.8325733542442322',
+                'GT_DIR': '/home/jason/Work/Cinnamon/Datasets/asahi/AsahiTest/label/',
+                'IMAGE_DIR': '/home/jason/Work/Cinnamon/Datasets/asahi/AsahiTest/input',
+                'IS_RUN': True,
+                'FILTER_VERTICAL': False,
+                'FILTER_HORIZONTAL': False,
+                'DEBUG': False,
+            },
         ]
 
-        model = RobustOCR(weights_path=weight_path)
+        model = None
+        # model = RobustOCR(weights_path=weight_path)
         # model = AutoregressiveOCR(weights_path=r'/Users/jason/Work/Cinnamon/lib-ocr/weight/autoregressive/par_general.pth')
 
         for info in LIST_INPUT_DATA:

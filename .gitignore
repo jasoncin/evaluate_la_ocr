@@ -150,3 +150,6 @@ pred_data/
 
 data/
 .DS_Store
+
+
+data_sumitomo_validation/*
